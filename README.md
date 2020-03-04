@@ -57,6 +57,10 @@ The entry point address of the backend API is at http://localhost:8080, **not** 
 The repository contains a lot of test cases to cover both api test and repository test.
 
     ./gradlew test
+    
+# Connecting via Docker --link
+`> $ docker run --name postgres -v /Users/lfaus/Projects/sandbox/data:/var/lib/postgresql/data -e POSTGRES_PASSWORD=password -d -p 5432:5432 postgres`
+`> $ docker run --rm --name demo-backend --link postgres:[ALIAS] -e POSTGRES_HOST=[ALIAS] -e POSTGRES_USER=[POSTGRES_USER] -e POSTGRES_PASS=[POSTGRES_PASS] -p 8080:8080 [DOCKER_IMAGE]`
 
 # Help
 
