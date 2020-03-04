@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
   labels:
     app: springbootdemo
   name: springbootdemo
+  namespace: prod
 spec:
   replicas: ${#toInt( parameters.replicas )}
   selector:
@@ -19,4 +20,3 @@ spec:
           name: springbootdemo
           ports:
             - containerPort: ${#toInt(parameters.containerPort)}
-

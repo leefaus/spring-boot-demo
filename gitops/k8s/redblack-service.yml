@@ -8,5 +8,5 @@ spec:
       protocol: TCP
       targetPort: ${#toInt(parameters.containerPort)}
   selector:
-    app: springbootdemo
+    redblackapp: realworldbackend
   type: LoadBalancer
