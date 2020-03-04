@@ -19,6 +19,13 @@ spec:
           name: realworldbackend
           ports:
             - containerPort: ${#toInt(parameters.containerPort)}
+          env:
+            - name: POSTGRES_HOST
+              value: "realworld.c9gbtmhbewq7.us-west-2.rds.amazonaws.com"
+            - name: POSTGRES_USER
+              value: "realworld"
+            - name: POSTGRES_PASS
+              value: "r3@lw0rld"
 ---
 apiVersion: v1
 kind: Service
