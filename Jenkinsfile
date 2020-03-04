@@ -32,7 +32,7 @@ pipeline {
         stage ('Docker Build') {
             steps {
                 script {
-                    dockerImage = docker.build (registry + ":${BUILD_NUMBER}", "--build-arg JARFILE=person-0.0.1-SNAPSHOT.jar .")
+                    dockerImage = docker.build (registry + ":${BUILD_NUMBER}", "--build-arg JARFILE=spring-boot-realworld-example-app-0.0.1-SNAPSHOT.jar .")
                 }
             }
         }
