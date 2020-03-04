@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "leefaus/real-world-backend"
+        registry = "leefaus/spring-boot-demo"
         registryCredential = "dockerhub"
         dockerImage = ""
     }
