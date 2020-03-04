@@ -32,7 +32,7 @@ pipeline {
         stage('Create JAR') {
             steps {
                 script {
-                    sh './gradlew clean jar --no-daemon' //run a gradle task
+                    sh './gradlew clean bootJar --no-daemon' //run a gradle task
                 }
             }
         }
