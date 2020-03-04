@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "continuouslee/real-world-backend"
+        registry = "leefaus/real-world-backend"
         registryCredential = "dockerhub"
         dockerImage = ""
     }
