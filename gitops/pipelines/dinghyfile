@@ -1,16 +1,20 @@
 {
-    "application": "realworldcontroller",
+    "application": "springbootdemo",
     "pipelines": [
         {
+            "application": "springbootdemo",
+            "keepWaitingPipelines": false,
+            "limitConcurrent": true,
+            "name": "deploy (gitops)",
             "expectedArtifacts": [
                 {
                     "defaultArtifact": {
                         "artifactAccount": "Armory",
                         "id": "02d9f5b9-8e70-4f29-ac8c-0545b772d9ed",
                         "name": "gitops/k8s/deployment.yaml",
-                        "reference": "https://api.github.com/repos/armory/spring-boot-realworld-example-app/contents/gitops/k8s/deployment.yaml",
+                        "reference": "https://api.github.com/repos/leefaus/spring-boot-demo/contents/gitops/k8s/deployment.yaml",
                         "type": "github/file",
-                        "version": "setupdinghy"
+                        "version": "dinghysetup"
                     },
                     "displayName": "deployment.yaml",
                     "id": "a8c52970-fe92-4759-a645-6602809a4ade",
@@ -64,7 +68,7 @@
                     "manifestArtifactAccount": "Armory",
                     "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
                     "moniker": {
-                        "app": "realworldcontroller"
+                        "app": "springbootdemo"
                     },
                     "name": "Deploy to Dev",
                     "namespaceOverride": "dev",
