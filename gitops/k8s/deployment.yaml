@@ -15,7 +15,7 @@ spec:
         app: realworldbackend
     spec:
       containers:
-        - image: 'nginx:latest'
+        - image: 'leefaus/spring-boot-demo'
           name: realworldbackend
           ports:
             - containerPort: ${#toInt(parameters.containerPort)}
