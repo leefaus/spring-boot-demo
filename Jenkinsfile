@@ -29,6 +29,13 @@ pipeline {
                 }
             }
         }
+        stage('Create JAR') {
+            steps {
+                script {
+                    sh './gradlew clean jar --no-daemon' //run a gradle task
+                }
+            }
+        }
         stage ('Docker Build') {
             steps {
                 script {
