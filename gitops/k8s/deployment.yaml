@@ -26,17 +26,3 @@ spec:
               value: "realworld"
             - name: POSTGRES_PASS
               value: "r3@lw0rld"
----
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-  name: backend
-spec:
-  ports:
-    - port: ${#toInt(parameters.loadbalancerPort)}
-      protocol: TCP
-      targetPort: ${#toInt(parameters.containerPort)}
-  selector:
-    app: realworldbackend
-  type: LoadBalancer
