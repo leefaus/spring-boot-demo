@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Unit & Integration Tests') {
             steps {
-                withGradle {
+                script {
                     try {
                         sh './gradlew clean test --no-daemon' //run a gradle task
                     } finally {
