@@ -55,7 +55,7 @@
             </if>
         </where>
         order by A.created_at desc
-        limit #{page.offset}, #{page.limit}
+        limit #{page.limit} offset #{page.offset}
     </select>
     <select id="countArticle" resultType="java.lang.Integer">
         select
