@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: springbootdemo
+spec:
+  ports:
+    - port: ${#toInt(parameters.loadbalancerPort)}
+      protocol: TCP
+      targetPort: ${#toInt(parameters.containerPort)}
+  selector:
+    app: springbootdemo
+  type: LoadBalancer

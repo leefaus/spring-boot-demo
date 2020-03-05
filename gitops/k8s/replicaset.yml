@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: ReplicaSet
 metadata:
   labels:
     app: springbootdemo
   name: springbootdemo
+  namespace: prod
 spec:
   replicas: ${#toInt( parameters.replicas )}
   selector:
@@ -19,10 +20,3 @@ spec:
           name: springbootdemo
           ports:
             - containerPort: ${#toInt(parameters.containerPort)}
-          env:
-            - name: POSTGRES_HOST
-              value: "realworld.c9gbtmhbewq7.us-west-2.rds.amazonaws.com"
-            - name: POSTGRES_USER
-              value: "realworld"
-            - name: POSTGRES_PASS
-              value: "r3@lw0rld"
