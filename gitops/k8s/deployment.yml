@@ -11,6 +11,8 @@ spec:
       app: conduitcontroller
   template:
     metadata:
+      annotations:
+        ad.datadoghq.com/conduitcontroller.logs: '[{"source":"conduit","service":"controller"}]'
       labels:
         app: conduitcontroller
     spec:
