@@ -1,94 +1,587 @@
 {
-    "application": "springbootdemo",
+    "application": "conduitcontrollergitops",
     "pipelines": [
         {
-            "application": "springbootdemo",
+            "application": "conduitcontrollergitops",
             "keepWaitingPipelines": false,
             "limitConcurrent": true,
             "name": "deploy (gitops)",
-            "expectedArtifacts": [
-                {
-                    "defaultArtifact": {
-                        "artifactAccount": "Armory",
-                        "id": "02d9f5b9-8e70-4f29-ac8c-0545b772d9ed",
-                        "name": "gitops/k8s/deployment.yaml",
-                        "reference": "https://api.github.com/repos/leefaus/spring-boot-demo/contents/gitops/k8s/deployment.yaml",
-                        "type": "github/file",
-                        "version": "dinghysetup"
-                    },
-                    "displayName": "deployment.yaml",
-                    "id": "a8c52970-fe92-4759-a645-6602809a4ade",
-                    "matchArtifact": {
-                        "artifactAccount": "Armory",
-                        "id": "f8234cc0-3907-4ce9-848d-1f062f0127e3",
-                        "name": "gitops/k8s/deployment.yaml",
-                        "type": "github/file"
-                    },
-                    "useDefaultArtifact": true,
-                    "usePriorArtifact": false
-                }
-            ],
-            "keepWaitingPipelines": false,
-            "lastModifiedBy": "away168",
-            "limitConcurrent": true,
-            "parameterConfig": [
-                {
-                    "default": "80",
-                    "description": "Port for Container",
-                    "hasOptions": false,
-                    "label": "",
-                    "name": "containerPort",
-                    "options": [
-                        {
-                            "value": ""
-                        }
-                    ],
-                    "pinned": true,
-                    "required": true
-                },
-                {
-                    "default": "80",
-                    "description": "Port for Loadbalancer",
-                    "hasOptions": false,
-                    "label": "",
-                    "name": "loadbalancerPort",
-                    "options": [
-                        {
-                            "value": ""
-                        }
-                    ],
-                    "pinned": true,
-                    "required": true
-                }
-            ],
-            "stages": [
-                {
-                    "account": "EKS-WEST",
-                    "cloudProvider": "kubernetes",
-                    "manifestArtifactAccount": "Armory",
-                    "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
-                    "moniker": {
-                        "app": "springbootdemo"
-                    },
-                    "name": "Deploy to Dev",
-                    "namespaceOverride": "dev",
-                    "refId": "1",
-                    "requisiteStageRefIds": [],
-                    "skipExpressionEvaluation": false,
-                    "source": "artifact",
-                    "trafficManagement": {
-                        "enabled": false,
-                        "options": {
-                            "enableTraffic": false,
-                            "services": []
-                        }
-                    },
-                    "type": "deployManifest"
-                }
-            ],
-            "triggers": [],
-            "updateTs": "1583280990000"
+            {
+  "appConfig": {},
+  "expectedArtifacts": [
+    {
+      "defaultArtifact": {
+        "artifactAccount": "Armory",
+        "id": "02d9f5b9-8e70-4f29-ac8c-0545b772d9ed",
+        "name": "gitops/k8s/deployment.yaml",
+        "reference": "https://api.github.com/repos/leefaus/spring-boot-demo/contents/gitops/k8s/deployment.yaml",
+        "type": "github/file",
+        "version": "conduitcontroller"
+      },
+      "displayName": "deployment.yaml",
+      "id": "a8c52970-fe92-4759-a645-6602809a4ade",
+      "matchArtifact": {
+        "artifactAccount": "Armory",
+        "id": "f8234cc0-3907-4ce9-848d-1f062f0127e3",
+        "name": "gitops/k8s/deployment.yaml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    },
+    {
+      "defaultArtifact": {
+        "artifactAccount": "Armory",
+        "id": "90f888cf-2c0d-4150-96a3-a4d332efac43",
+        "name": "gitops/k8s/service.yml",
+        "reference": "https://api.github.com/repos/leefaus/spring-boot-demo/contents/gitops/k8s/service.yml",
+        "type": "github/file",
+        "version": "conduitcontroller"
+      },
+      "displayName": "service.yml",
+      "id": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
+      "matchArtifact": {
+        "artifactAccount": "Armory",
+        "id": "f54e4227-84db-453c-9c96-03067aeaa9d6",
+        "name": "gitops/k8s/service.yml",
+        "type": "github/file"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    },
+    {
+      "defaultArtifact": {
+        "artifactAccount": "docker-registry",
+        "id": "0e773099-cc28-40d8-895b-f12168fe6cf5",
+        "name": "leefaus/spring-boot-demo",
+        "reference": "leefaus/spring-boot-demo:${trigger['tag']}",
+        "type": "docker/image",
+        "version": "${trigger['tag']}"
+      },
+      "displayName": "spring-boot-demo",
+      "id": "15d89714-7ada-4ec2-b433-86247a73a551",
+      "matchArtifact": {
+        "artifactAccount": "docker-registry",
+        "id": "71ccfd0d-c25f-4531-9b13-582882f50ece",
+        "name": "leefaus/spring-boot-demo",
+        "type": "docker/image"
+      },
+      "useDefaultArtifact": true,
+      "usePriorArtifact": false
+    }
+  ],
+  "keepWaitingPipelines": false,
+  "lastModifiedBy": "away168",
+  "limitConcurrent": true,
+  "notifications": [
+    {
+      "address": "spinnakertender",
+      "level": "pipeline",
+      "type": "slack",
+      "when": [
+        "pipeline.complete",
+        "pipeline.starting",
+        "pipeline.failed"
+      ]
+    }
+  ],
+  "parameterConfig": [
+    {
+      "default": "8080",
+      "description": "Port for Container",
+      "hasOptions": false,
+      "label": "",
+      "name": "containerPort",
+      "options": [
+        {
+          "value": "8080"
+        },
+        {
+          "value": ""
         }
+      ],
+      "pinned": true,
+      "required": true
+    },
+    {
+      "default": "80",
+      "description": "Port for Loadbalancer",
+      "hasOptions": false,
+      "label": "",
+      "name": "loadbalancerPort",
+      "options": [
+        {
+          "value": "80"
+        },
+        {
+          "value": ""
+        }
+      ],
+      "pinned": true,
+      "required": true
+    },
+    {
+      "default": "3",
+      "description": "Number of Replicas",
+      "hasOptions": false,
+      "label": "",
+      "name": "replicas",
+      "options": [
+        {
+          "value": "3"
+        },
+        {
+          "value": ""
+        }
+      ],
+      "pinned": true,
+      "required": false
+    }
+  ],
+  "roles": [
+    "se-managers",
+    "sales-engineer"
+  ],
+  "stages": [
+    {
+      "account": "EKS-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy to Dev",
+      "namespaceOverride": "dev",
+      "refId": "1",
+      "requisiteStageRefIds": [],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "EKS-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy to Stage",
+      "namespaceOverride": "stage",
+      "refId": "2",
+      "requisiteStageRefIds": [
+        "5"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "failPipeline": true,
+      "instructions": "Pick a deployment strategy",
+      "judgmentInputs": [
+        {
+          "value": "Rolling"
+        },
+        {
+          "value": "Red Black"
+        },
+        {
+          "value": "Canary"
+        }
+      ],
+      "name": "Choose Deployment Option",
+      "notifications": [
+        {
+          "address": "spinnakertender",
+          "level": "stage",
+          "type": "slack",
+          "when": [
+            "manualJudgment",
+            "manualJudgmentContinue",
+            "manualJudgmentStop"
+          ]
+        }
+      ],
+      "propagateAuthenticationContext": true,
+      "refId": "3",
+      "requisiteStageRefIds": [
+        "6"
+      ],
+      "sendNotifications": true,
+      "type": "manualJudgment"
+    },
+    {
+      "account": "EKS-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy to EKS",
+      "namespaceOverride": "prod",
+      "refId": "4",
+      "requiredArtifactIds": [
+        "15d89714-7ada-4ec2-b433-86247a73a551"
+      ],
+      "requiredArtifacts": [],
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "restrictExecutionDuringTimeWindow": true,
+      "restrictedExecutionWindow": {
+        "days": [
+          2,
+          4,
+          6,
+          3,
+          5
+        ],
+        "jitter": {
+          "enabled": true,
+          "maxDelay": 600,
+          "minDelay": 0,
+          "skipManual": true
+        },
+        "whitelist": [
+          {
+            "endHour": 17,
+            "endMin": 0,
+            "startHour": 8,
+            "startMin": 0
+          }
+        ]
+      },
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "stageEnabled": {
+        "expression": "${#judgment(\"Choose Deployment Option\") == 'Rolling'}",
+        "type": "expression"
+      },
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "continuePipeline": false,
+      "failPipeline": true,
+      "job": "Run Tests",
+      "master": "sales-jenkins",
+      "name": "Run Smoke Test",
+      "parameters": {},
+      "propertyFile": "test.properties",
+      "refId": "5",
+      "requisiteStageRefIds": [
+        "1",
+        "11"
+      ],
+      "type": "jenkins"
+    },
+    {
+      "continuePipeline": false,
+      "failPipeline": true,
+      "job": "Run Tests",
+      "master": "sales-jenkins",
+      "name": "Run Full QA",
+      "parameters": {
+        "Environment": "stage"
+      },
+      "propertyFile": "test.properties",
+      "refId": "6",
+      "requisiteStageRefIds": [
+        "2",
+        "12"
+      ],
+      "type": "jenkins"
+    },
+    {
+      "customHeaders": {
+        "Authorization": "Basic YW5kcmV3LndheUBhcm1vcnkuaW86RWlKaFdRbmhWUWVrczlQZGI1aHlDQkNG",
+        "Content-Type": "application/json"
+      },
+      "failFastStatusCodes": [
+        400,
+        500
+      ],
+      "method": "POST",
+      "name": "Update Ticket",
+      "payload": {
+        "requestFieldValues": {
+          "customfield_10536": {
+            "id": "10264"
+          },
+          "summary": "Smoke Test Passed or Failed on ${trigger.buildNumber}"
+        },
+        "requestTypeId": "45",
+        "serviceDeskId": "6"
+      },
+      "refId": "7",
+      "requisiteStageRefIds": [
+        "5"
+      ],
+      "statusUrlResolution": "getMethod",
+      "type": "webhook",
+      "url": "https://armory.atlassian.net/rest/servicedeskapi/request"
+    },
+    {
+      "customHeaders": {
+        "Authorization": "Basic YW5kcmV3LndheUBhcm1vcnkuaW86RWlKaFdRbmhWUWVrczlQZGI1aHlDQkNG",
+        "Content-Type": "application/json"
+      },
+      "failFastStatusCodes": [
+        400,
+        500
+      ],
+      "method": "POST",
+      "name": "Update Ticket",
+      "payload": {
+        "requestFieldValues": {
+          "customfield_10536": {
+            "id": "10264"
+          },
+          "summary": "QA Passed or Failed on Build ${trigger.buildNumber}"
+        },
+        "requestTypeId": "45",
+        "serviceDeskId": "6"
+      },
+      "refId": "8",
+      "requisiteStageRefIds": [
+        "6"
+      ],
+      "statusUrlResolution": "getMethod",
+      "type": "webhook",
+      "url": "https://armory.atlassian.net/rest/servicedeskapi/request"
+    },
+    {
+      "application": "conduitcontroller",
+      "failPipeline": true,
+      "name": "Deploy Red/Black",
+      "pipeline": "f221c798-b2c4-4004-8c2e-aebecc642c8a",
+      "pipelineParameters": {
+        "advanced": "true",
+        "containerPort": "${parameters.containerPort}",
+        "loadbalancerPort": "${parameters.loadbalancerPort}",
+        "replicas": "${parameters.replicas}"
+      },
+      "refId": "9",
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "stageEnabled": {
+        "expression": "${#judgment(\"Choose Deployment Option\") == 'Red Black'}",
+        "type": "expression"
+      },
+      "type": "pipeline",
+      "waitForCompletion": true
+    },
+    {
+      "application": "conduitcontroller",
+      "failPipeline": true,
+      "name": "Deploy Canary",
+      "pipeline": "0e38bdf3-ea44-4b3a-8e39-b9df6d50df46",
+      "pipelineParameters": {},
+      "refId": "10",
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "stageEnabled": {
+        "expression": "${#judgment(\"Choose Deployment Option\") == 'Canary'}",
+        "type": "expression"
+      },
+      "type": "pipeline",
+      "waitForCompletion": false
+    },
+    {
+      "account": "EKS-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy LB to Dev",
+      "namespaceOverride": "dev",
+      "refId": "11",
+      "requisiteStageRefIds": [],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "EKS-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy LB to Stage",
+      "namespaceOverride": "stage",
+      "refId": "12",
+      "requisiteStageRefIds": [
+        "5",
+        "1"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "EKS-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy LB to EKS",
+      "namespaceOverride": "prod",
+      "refId": "13",
+      "requisiteStageRefIds": [
+        "4"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "stageEnabled": {
+        "expression": "${#judgment(\"Choose Deployment Option\") == 'Rolling'}",
+        "type": "expression"
+      },
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "EKS-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy to GKE",
+      "namespaceOverride": "prod",
+      "refId": "14",
+      "requiredArtifactIds": [
+        "15d89714-7ada-4ec2-b433-86247a73a551"
+      ],
+      "requiredArtifacts": [],
+      "requisiteStageRefIds": [
+        "3"
+      ],
+      "restrictExecutionDuringTimeWindow": false,
+      "restrictedExecutionWindow": {
+        "days": [
+          2,
+          4,
+          6,
+          3,
+          5
+        ],
+        "jitter": {
+          "enabled": true,
+          "maxDelay": 600,
+          "minDelay": 0,
+          "skipManual": true
+        },
+        "whitelist": []
+      },
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "stageEnabled": {
+        "expression": "${#judgment(\"Choose Deployment Option\") == 'Rolling'}",
+        "type": "expression"
+      },
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false,
+          "services": []
+        }
+      },
+      "type": "deployManifest"
+    },
+    {
+      "account": "GKE-WEST",
+      "cloudProvider": "kubernetes",
+      "manifestArtifactAccount": "Armory",
+      "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
+      "moniker": {
+        "app": "conduitcontrollergitops"
+      },
+      "name": "Deploy LB to GKE",
+      "namespaceOverride": "prod",
+      "refId": "15",
+      "requisiteStageRefIds": [
+        "14"
+      ],
+      "skipExpressionEvaluation": false,
+      "source": "artifact",
+      "stageEnabled": {
+        "expression": "${#judgment(\"Choose Deployment Option\") == 'Rolling'}",
+        "type": "expression"
+      },
+      "trafficManagement": {
+        "enabled": false,
+        "options": {
+          "enableTraffic": false
+        }
+      },
+      "type": "deployManifest"
+    }
+  ],
+  "triggers": [
+    {
+      "account": "docker-dev-lee",
+      "enabled": true,
+      "organization": "leefaus",
+      "registry": "index.docker.io",
+      "repository": "leefaus/spring-boot-demo",
+      "runAsUser": "f322a0a7-51f8-4d7c-bc26-0c84d824a664@managed-service-account",
+      "type": "docker"
+    }
+  ],
+  "updateTs": "1583381977000"
+}
     ],
     "spec": {
         "permissions": {
