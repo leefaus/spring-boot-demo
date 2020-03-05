@@ -15,7 +15,7 @@
             "name": "gitops/k8s/deployment.yml",
             "reference": "https://api.github.com/repos/leefaus/spring-boot-demo/contents/gitops/k8s/deployment.yml",
             "type": "github/file",
-            "version": "conduitcontroller"
+            "version": "master"
           },
           "displayName": "deployment.yml",
           "id": "a8c52970-fe92-4759-a645-6602809a4ade",
@@ -35,7 +35,7 @@
             "name": "gitops/k8s/service.yml",
             "reference": "https://api.github.com/repos/leefaus/spring-boot-demo/contents/gitops/k8s/service.yml",
             "type": "github/file",
-            "version": "conduitcontroller"
+            "version": "master"
           },
           "displayName": "service.yml",
           "id": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
