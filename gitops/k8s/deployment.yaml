@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: springbootdemo
-  name: springbootdemo
+    app: conduitcontroller
+  name: conduitcontroller
 spec:
   replicas: ${#toInt( parameters.replicas )}
   selector:
     matchLabels:
-      app: springbootdemo
+      app: conduitcontroller
   template:
     metadata:
       labels:
-        app: springbootdemo
+        app: conduitcontroller
     spec:
       containers:
         - image: 'leefaus/spring-boot-demo'
-          name: springbootdemo
+          name: conduitcontroller
           ports:
             - containerPort: ${#toInt(parameters.containerPort)}
           env:

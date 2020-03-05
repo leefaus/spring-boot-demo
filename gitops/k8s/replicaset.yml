@@ -2,21 +2,28 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   labels:
-    app: springbootdemo
-  name: springbootdemo
+    app: conduitcontroller-rb
+  name: conduitcontroller-rb
   namespace: prod
 spec:
   replicas: ${#toInt( parameters.replicas )}
   selector:
     matchLabels:
-      app: springbootdemo
+      app: conduitcontroller-rb
   template:
     metadata:
       labels:
-        app: springbootdemo
+        app: conduitcontroller-rb
     spec:
       containers:
         - image: 'leefaus/spring-boot-demo'
-          name: springbootdemo
+          name: conduitcontroller-rb
           ports:
             - containerPort: ${#toInt(parameters.containerPort)}
+          env:
+            - name: POSTGRES_HOST
+              value: "realworld.c9gbtmhbewq7.us-west-2.rds.amazonaws.com"
+            - name: POSTGRES_USER
+              value: "realworld"
+            - name: POSTGRES_PASS
+              value: "r3@lw0rld"
