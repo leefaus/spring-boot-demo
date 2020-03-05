@@ -2,21 +2,21 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   labels:
-    app: conduitcontroller
-  name: conduitcontroller
+    app: conduitcontroller-rb
+  name: conduitcontroller-rb
   namespace: prod
 spec:
   replicas: ${#toInt( parameters.replicas )}
   selector:
     matchLabels:
-      app: conduitcontroller
+      app: conduitcontroller-rb
   template:
     metadata:
       labels:
-        app: conduitcontroller
+        app: conduitcontroller-rb
     spec:
       containers:
         - image: 'leefaus/spring-boot-demo'
-          name: conduitcontroller
+          name: conduitcontroller-rb
           ports:
             - containerPort: ${#toInt(parameters.containerPort)}
