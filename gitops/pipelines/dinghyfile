@@ -1,11 +1,12 @@
 {
-  "application": "conduitcontrollergitops",
+  "application": "conduitcontroller",
   "pipelines": [
     {
-      "application": "conduitcontrollergitops",
+      "application": "conduitcontroller",
       "keepWaitingPipelines": false,
       "limitConcurrent": true,
       "name": "deploy (gitops)",
+      "appConfig": {},
       "expectedArtifacts": [
         {
           "defaultArtifact": {
@@ -147,7 +148,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy to Dev",
           "namespaceOverride": "dev",
@@ -170,7 +171,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy to Stage",
           "namespaceOverride": "stage",
@@ -230,7 +231,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy to EKS",
           "namespaceOverride": "prod",
@@ -416,7 +417,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy LB to Dev",
           "namespaceOverride": "dev",
@@ -439,7 +440,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy LB to Stage",
           "namespaceOverride": "stage",
@@ -465,7 +466,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy LB to EKS",
           "namespaceOverride": "prod",
@@ -494,7 +495,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "a8c52970-fe92-4759-a645-6602809a4ade",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy to GKE",
           "namespaceOverride": "prod",
@@ -544,7 +545,7 @@
           "manifestArtifactAccount": "Armory",
           "manifestArtifactId": "cc1d50ec-10ee-4658-9562-77cb44f4584b",
           "moniker": {
-            "app": "conduitcontrollergitops"
+            "app": "conduitcontroller"
           },
           "name": "Deploy LB to GKE",
           "namespaceOverride": "prod",
