@@ -5,7 +5,7 @@
       "application": "conduitcontroller",
       "keepWaitingPipelines": false,
       "limitConcurrent": true,
-      "name": "deploy mar 10 (gitops)",
+      "name": "deploy (gitops)",
       "appConfig": {},
       "expectedArtifacts": [
         {
@@ -150,7 +150,7 @@
           "moniker": {
             "app": "conduitcontroller"
           },
-          "name": "Deploy to Dev - Hello",
+          "name": "Deploy to Dev",
           "namespaceOverride": "dev",
           "refId": "1",
           "requisiteStageRefIds": [],
